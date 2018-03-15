@@ -1,7 +1,7 @@
-group = 'Heroku'
+group = 'Heroku:'
 command :aad do |c|
   c.syntax      = 'ehyo aad [options]'
-  c.summary     = "#{group}: Add & Deploy"
+  c.summary     = "#{group} Add & Deploy"
   c.description = 'Add all changes to git. Deploy to Heroku.'
   c.option '--message STRING', String, 'git commit message'
   c.option '--assets', 'Precompile rails assets'
@@ -17,7 +17,7 @@ end
 
 command :hredb do |c|
   c.syntax      = 'ehyo hredb [options]'
-  c.summary     = "#{group}: Reset DB"
+  c.summary     = "#{group} Reset DB"
   c.description = 'Remigrate, Reseed DB, Restart Server'
   c.option '--no-seed',    'Skip db seeding'
   c.option '--no-migrate', 'Skip starting rails server'
@@ -30,7 +30,7 @@ end
 
 command :hpush do |c|
   c.syntax      = 'ehyo hpush'
-  c.summary     = "#{group}: Push to Heroku"
+  c.summary     = "#{group} Push to Heroku"
   c.description = 'Push changes to Heroku'
   c.action do |args, options|
     puts `git push heroku master`

@@ -10,6 +10,7 @@ module Ehyo
       program :description, 'Command Assistant'
 
       # Available Commands
+      require_relative 'ehyo/commands/git'
       require_relative 'ehyo/commands/heroku'
       require_relative 'ehyo/commands/rails'
       require_relative 'ehyo/commands/shell'

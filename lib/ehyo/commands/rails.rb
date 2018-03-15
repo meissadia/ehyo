@@ -1,7 +1,7 @@
-group = 'Rails'
+group = 'Rails:'
 command :redb do |c|
   c.syntax      = 'ehyo redb [options]'
-  c.summary     = "#{group}: Reset DB"
+  c.summary     = "#{group} Reset DB"
   c.description = 'Remigrate, Reseed DB, Restart Server'
   c.option '--no-seed',    'Skip db seeding'
   c.option '--no-server',  'Skip starting rails server'
@@ -16,7 +16,7 @@ end
 
 command :server do |c|
   c.syntax      = 'ehyo rails_s'
-  c.summary     = 'Rails: Server'
+  c.summary     = "#{group} Server"
   c.description = 'Start externally accessible server'
   c.action do |args, options|
     exec 'rails s -b 0.0.0.0'

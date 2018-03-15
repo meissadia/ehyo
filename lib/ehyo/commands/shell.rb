@@ -1,15 +1,21 @@
 require 'open3'
-
+group = 'Shell:'
 command :ip do |c|
   c.syntax      = 'ehyo myip'
-  c.summary     = 'Display IP Addresses'
+  c.summary     = "#{group} Display IP Addresses"
   c.description = 'Display Local and External IP Addresses'
   c.action do |args, options|
     puts
     puts 'Local   : ' + `ipconfig getifaddr en1`
-    Open3.popen3("curl http://ipecho.net/plain") do |stdin, stdout, stderr, thread|
-       puts 'External: ' + stdout.read.chomp
-    end
+    puts 'External: ' + curl("http://ipecho.net/plain")
     puts
+  end
+end
+
+private
+
+def curl(url)
+  Open3.popen3("curl #{url}") do |stdin, stdout, stderr, thread|
+    stdout.read.chomp
   end
 end
