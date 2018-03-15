@@ -14,6 +14,6 @@ command :aac do |c|
     puts "- #{c.summary} -" if c.summary
     puts `git add .`
     msg = options.message || ask('Enter commit message: ')
-    puts `git commit -m '#{msg}'`
+    puts `git commit -m "#{msg}"`
   end
 end
