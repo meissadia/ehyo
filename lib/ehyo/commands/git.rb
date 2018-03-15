@@ -1,10 +1,5 @@
 group = 'Git:'
 
-# def escape_quotes(str)
-#   str = str.gsub("'", "\\'")
-#   str.gsub('"', '\\"')
-# end
-
 command :aac do |c|
   c.syntax      = 'ehyo aac [options]'
   c.summary     = "#{group} Add & Commit"
