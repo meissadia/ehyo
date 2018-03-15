@@ -5,9 +5,9 @@ include Commander::Methods
 module Ehyo
   class Cli
     def run
-      program :name, 'ehyo'
+      program :name, 'Eh, Yo!'
       program :version, VERSION
-      program :description, 'Command Assistant'
+      program :description, 'a system automation assistant'
 
       # Available Commands
       require_relative 'ehyo/commands/git'
