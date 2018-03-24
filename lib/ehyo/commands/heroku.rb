@@ -8,7 +8,10 @@ command :'heroku aad' do |c|
   c.action do |args, options|
     puts "- #{c.summary} -" if c.summary
     msg = options.message || ask(COMMIT_MSG_PROMPT)
-    return if msg.empty?
+    if msg.empty?
+      puts "User canceled deployment.\n\n"
+      next
+    end
     puts `rake assets:precompile` if options.precomp
     git_add_commit(msg)
     puts `#{PUSH_HEROKU}`

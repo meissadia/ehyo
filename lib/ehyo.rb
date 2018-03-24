@@ -8,7 +8,7 @@ module Ehyo
     def run
       program :name, 'Eh, Yo!'
       program :version, VERSION
-      program :description, 'a system automation assistant'
+      program :description, 'Macros for Git, Rails, Heroku Developers'
       default_command :help
 
       # Available Commands
