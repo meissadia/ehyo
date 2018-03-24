@@ -1,6 +1,6 @@
 # Ehyo
 
-A collection of macros to simplify developing with Git, Rails, and Heroku from the command line.
+A collection of macros to simplify development with Git, Rails, and Heroku from the command line.
 
 ## Installation
 
@@ -20,8 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-ehyo <command> [options]  
-ehyo help <command>
+`ehyo <command> [args] [options]  ` or `ehyo help <command>`
 
 ## Development
 

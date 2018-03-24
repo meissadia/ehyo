@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["meissadia@gmail.com"]
 
   spec.summary       = %q{Macros for Git, Rails, Heroku Developers}
-  spec.description   = %q{A collection of macros to simplify developing with Git, Rails, and Heroku from the command line.}
+  spec.description   = %q{A collection of macros to simplify development with Git, Rails, and Heroku from the command line.}
   spec.homepage      = "http://meissadia.surge.sh"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
