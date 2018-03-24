@@ -1,6 +1,6 @@
-require 'open3'
 group = 'Shell:'
-command :ip do |c|
+
+command :'my ip' do |c|
   c.syntax      = 'ehyo myip'
   c.summary     = "#{group} Display IP Addresses"
   c.description = 'Display Local and External IP Addresses'
@@ -12,10 +12,11 @@ command :ip do |c|
   end
 end
 
-private
-
-def curl(url)
-  Open3.popen3("curl #{url}") do |stdin, stdout, stderr, thread|
-    stdout.read.chomp
+command :'find ps' do |c|
+  c.syntax      = 'ehyo find ps <term>'
+  c.summary     = "#{group} ps aux | grep <term>"
+  c.description = 'Search running processes.'
+  c.action do |args, options|
+    puts `ps aux | grep #{args.join ' '}`
   end
 end

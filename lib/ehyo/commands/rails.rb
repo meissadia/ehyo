@@ -1,24 +1,61 @@
 group = 'Rails:'
-command :redb do |c|
+
+command :'rails redb' do |c|
   c.syntax      = 'ehyo redb [options]'
   c.summary     = "#{group} Reset DB"
-  c.description = 'Remigrate, Reseed DB, Restart Server'
-  c.option '--no-seed',    'Skip db seeding'
-  c.option '--no-server',  'Skip starting rails server'
-  c.option '--no-migrate', 'Skip starting rails server'
+  c.description = 'Remigrate DB, Reseed DB, Restart Server'
+  c.option '--xseed',    'Skip db seeding'
+  c.option '--xserver',  'Skip starting rails server'
+  c.option '--xmigrate', 'Skip starting rails server'
   c.action do |args, options|
-    puts `rake db:migrate VERSION=0` if options.no_migrate.nil?
-    puts `rake db:migrate`           if options.no_migrate.nil?
-    puts `rake db:seed`              if options.no_seed.nil?
-    exec 'rails s -b 0.0.0.0'        if options.no_server.nil?
+    puts `#{RAKE_MIGRATE_0}` if options.xmigrate.nil?
+    puts `#{RAKE_MIGRATE}`   if options.xmigrate.nil?
+    puts `#{RAKE_SEED}`      if options.xseed.nil?
+    exec RAILS_SERVER        if options.xserver.nil?
   end
 end
 
-command :server do |c|
-  c.syntax      = 'ehyo rails_s'
-  c.summary     = "#{group} Server"
-  c.description = 'Start externally accessible server'
+command :'railsb' do |c|
+  c.syntax      = 'ehyo railsb <app-name> [options]'
+  c.summary     = "#{group} Start Background Server"
+  c.description = 'Start Rails server in daemon mode.'
+  c.option '--port STRING', String, 'Server listening port'
   c.action do |args, options|
-    exec 'rails s -b 0.0.0.0'
+    cmd = rails_path(args.first)
+    cmd = cmd.empty? ?
+          rails_sbg(options.port) :              # Start app from current dir
+          cmd + ' && ' + rails_sbg(options.port) # Jump to dir and start app
+    `#{cmd}`
   end
+end
+
+command :'railsk' do |c|
+  c.syntax      = 'ehyo railsk <app-name>'
+  c.summary     = "#{group} Stop Background Server"
+  c.description = 'Stop Background Rails Server'
+  c.action do |args, options|
+    cmd = rails_path(args.first)
+    cmd = cmd.empty? ?
+          rails_kill(args) :              # Kill app in current dir
+          cmd + ' && ' + rails_kill(args) # Jump to dir and kill app
+    puts `#{cmd}`
+  end
+end
+
+def rails_path(dname)
+  return '' if dname.nil? || dname.empty?
+  "cd #{PATH_RAILS}#{dname}"
+end
+
+def rails_sbg(port=nil)
+  "#{RAILS_SERVER}#{' -p ' + port if port} -d"
+end
+
+def rails_kill(args)
+  error   = "echo 'No running server found!'"
+  success = "echo 'Server halted!'"
+  file = File.expand_path("#{PATH_RAILS}#{args.first}/#{FILE_RAILS_PID}")
+  return "kill -9 $(cat #{file}) && #{success}" if File.exist?(file)
+  error
+
 end
