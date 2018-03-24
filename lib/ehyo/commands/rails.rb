@@ -54,7 +54,9 @@ end
 def rails_kill(args)
   error   = "echo 'No running server found!'"
   success = "echo 'Server halted!'"
-  file = File.expand_path("#{PATH_RAILS}#{args.first}/#{FILE_RAILS_PID}")
+  file = args.empty? ?
+    FILE_RAILS_PID :
+    File.expand_path("#{PATH_RAILS}#{args.first}/#{FILE_RAILS_PID}")
   return "kill -9 $(cat #{file}) && #{success}" if File.exist?(file)
   error
 
