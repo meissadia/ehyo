@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-# require_relative '../lib/ehyo' # Production
-require File.join(Dir.home, '/coding/ruby/ehyo/lib/ehyo') # DEV ONLY - Run development source using system installed cli
+require_relative '../lib/ehyo' # Production
+# require File.join(Dir.home, '/coding/ruby/ehyo/lib/ehyo') # DEV ONLY - Run development source using system installed cli
 Ehyo::Cli.new.run
