@@ -14,6 +14,7 @@ module Ehyo
       # Available Commands
       require_relative 'ehyo/commands/shared'
       require_relative 'ehyo/commands/git'
+      require_relative 'ehyo/commands/gem'
       require_relative 'ehyo/commands/heroku'
       require_relative 'ehyo/commands/rails'
       require_relative 'ehyo/commands/shell'
