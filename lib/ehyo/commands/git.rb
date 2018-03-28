@@ -17,3 +17,4 @@ command :'git aad' do |c|
     exec 'git push' unless options.xpush
   end
 end
+alias_command :'g:aad', :'git aad'

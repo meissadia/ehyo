@@ -1,6 +1,6 @@
 group = 'Gem:'
 
-command :'gem' do |c|
+command :'gem:install' do |c|
   c.syntax      = 'ehyo gem'
   c.summary     = "#{group} Build & Install"
   c.description = 'Build and install the current directory\'s gem'

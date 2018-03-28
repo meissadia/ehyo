@@ -14,6 +14,20 @@ command :'rails redb' do |c|
     exec RAILS_SERVER        if options.xserver.nil?
   end
 end
+alias_command :'r:redb', :'rails redb'
+
+command :'rails db:reset' do |c|
+  c.syntax      = 'ehyo rails db:reset'
+  c.summary     = "#{group} Reset DB"
+  c.description = 'Remigrate DB, Reseed DB, Restart Server'
+  c.action do |args, options|
+    puts `rake db:drop`
+    puts `rake db:create`
+    puts `rake db:migrate`
+    puts `rake db:seed`
+  end
+end
+alias_command :'r:db:reset', :'rails db:reset'
 
 command :'railsb' do |c|
   c.syntax      = 'ehyo railsb <app-name> [options]'

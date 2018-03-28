@@ -1,6 +1,6 @@
 group = 'Heroku:'
 command :'heroku aad' do |c|
-  c.syntax      = 'ehyo aad [options]'
+  c.syntax      = 'ehyo heroku aad [options]'
   c.summary     = "#{group} Add & Deploy"
   c.description = 'Add all changes to git. Deploy to Heroku.'
   c.option '--message STRING', String, 'git commit message'
@@ -17,6 +17,7 @@ command :'heroku aad' do |c|
     puts `#{PUSH_HEROKU}`
   end
 end
+alias_command :'h:aad', :'heroku aad'
 
 command :'heroku redb' do |c|
   c.syntax      = 'ehyo hredb [options]'
@@ -30,6 +31,7 @@ command :'heroku redb' do |c|
     puts `#{HEROKU_RUN} #{RAKE_SEED}`      if options.no_seed.nil?
   end
 end
+alias_command :'h:redb', :'heroku redb'
 
 command :'heroku push' do |c|
   c.syntax      = 'ehyo hpush'
@@ -39,3 +41,4 @@ command :'heroku push' do |c|
     puts `#{PUSH_HEROKU}`
   end
 end
+alias_command :'h:push', :'heroku push'
