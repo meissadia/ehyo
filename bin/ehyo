@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require_relative '../lib/ehyo' # Production
-# require File.join(Dir.home, '/coding/ruby/ehyo/lib/ehyo') # DEV ONLY - Run development source using system installed cli
+if ENV['DEV_ENV']
+  # DEV ONLY - The system installed CLI will execute dev build
+  require File.join(Dir.home, "#{ENV['DIR_RUBY']}/ehyo/lib/ehyo")
+else
+  require_relative '../lib/ehyo' # Production
+end
 Ehyo::Cli.new.run

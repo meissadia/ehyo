@@ -1,7 +1,7 @@
 group = 'Gem:'
 
-command :'gem:install' do |c|
-  c.syntax      = 'ehyo gem'
+command :'gem install' do |c|
+  c.syntax      = 'ehyo gem install'
   c.summary     = "#{group} Build & Install"
   c.description = 'Build and install the current directory\'s gem'
   c.action do |args, options|
@@ -11,3 +11,4 @@ command :'gem:install' do |c|
     puts `gem install #{File.basename(spec, File.extname(spec))}`
   end
 end
+alias_command :'g:install'  , :'gem install'
