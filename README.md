@@ -20,9 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-`$ ehyo help`
-`$ ehyo help <command>`
-`$ ehyo <command> [args] [options]  ` or  
+`$ ehyo help`  
+`$ ehyo help <command>`  
+`$ ehyo <command> [args] [options]  `  
 
 ## Development
 
